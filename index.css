@@ -4,12 +4,14 @@
 margin: 0;
 }
 #roomNumbers{
-  margin: 7px;
+  /* margin: 7px; */
 }
 body{
-  margin: 4%;
+  margin: 0;
+  padding: 0;
   background-color: black;
-  color:white
+  color:white;
+
 }
 #button {
   background-color: orange
@@ -66,6 +68,23 @@ div.hidden
 {
 display: none
 }
-#chat{
-  margin-right: 100%
+/* #chat{
+  margin-right: 30%
+} */
+#content{
+position: absolute;
+top: 100px;
+left: 0;
+right: 0;
+font-family: Helvetica;
+letter-spacing: 1px;
+font-size: 11pt;
+color: #ffffff;
+/* padding: 20px; */
+/* background-color: rgba(200, 200, 200, 0.2); */
+width: 100%;
+margin: 0 auto;
+}
+#m{
+  /* width:30% */
 }

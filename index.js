@@ -67,7 +67,7 @@ io.on('connection', function (socket) {
     });
 
     socket.on('disconnect', function () {
-        for (let i = 0; i < 100; i++) {
+        for (let i = 0; i < 1000000; i++) {
             if (games[i].pid[0] == playerId || games[i].pid[1] == playerId)
                 games[i].players--;
         }
