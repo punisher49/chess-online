@@ -1,0 +1,71 @@
+.number::-webkit-inner-spin-button,
+.number::-webkit-outer-spin-button {
+-webkit-appearance: none;
+margin: 0;
+}
+#roomNumbers{
+  margin: 7px;
+}
+body{
+  margin: 4%;
+  background-color: black;
+  color:white
+}
+#button {
+  background-color: orange
+}
+/* .form-control{
+  width: 30%;
+} */
+
+#messages {
+list-style-type: none;
+position:absolute;
+left:0;
+top: 0;
+/* border: 2px solid yellow; */
+width: 20%;
+text-align: center;
+margin: 3px;
+/* flex: 1; overflow: auto; */
+font-size: 15px;
+display: block;
+margin-top: 5%
+
+}
+#messages li {
+padding: 5px 10px;
+margin-top: 20px
+
+}
+
+#messages li:nth-child(odd) {
+background: #FDA856;
+border-radius: 10px;
+margin-left: 120px;
+width: 50%;
+word-wrap: break-word;
+}
+#messages li:nth-child(even) {
+background: #add8e6;
+border-radius: 10px;
+width: 50%;
+word-wrap: break-word;
+
+}
+h1{
+text-align: center;
+}
+form{
+margin-left: 30%
+}
+p{
+margin-left: 30%
+}
+div.hidden
+{
+display: none
+}
+#chat{
+  margin-right: 100%
+}
