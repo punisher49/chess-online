@@ -26,9 +26,9 @@ function draw() {
 function snowflake() {
   // initialize coordinates
   this.posX = 0;
-  this.posY = random(-50, 0);
+  this.posY = 0;
   this.initialangle = random(0, 2 * PI);
-  this.size = random(2, 5);
+  this.size = random(1, 2);
 
   // radius of snowflake spiral
   // chosen so the snowflakes are uniformly spread out in area
@@ -36,7 +36,7 @@ function snowflake() {
 
   this.update = function(time) {
     // x position follows a circle
-    let w = 0.6; // angular speed
+    let w = 0.3; // angular speed
     let angle = w * time + this.initialangle;
     this.posX = width / 2 + this.radius * sin(angle);
 

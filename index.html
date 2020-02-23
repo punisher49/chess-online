@@ -20,7 +20,7 @@
       <link rel="stylesheet" href="./chessboard/css/chessboard-0.3.0.min.css">
       <link rel="stylesheet" href="index.css">
       <script src="./chessboard/js/p5.min.js"></script>
-      <script src="./chessboard/js/main.js"></script>
+      <script src="./chessboard/js/snow.js"></script>
 
 
 </head>
@@ -39,15 +39,16 @@
       <div id="board" style="width: 500px; margin: auto"></div>
     </div>
     <div id="chat" class="hidden">
-          <ul id="messages"><h2>Messages</h2></ul>
+          <ul id="messages"><h4>Chat Room</h4></ul>
           <form action="">
-          <input id="m" autocomplete="off"/><button class="btn btn-success">Send</button>
+          <input id="m" autocomplete="off" /><button class="btn btn-success">Send</button>
           </form>
     </div>
 
     <div>
 
       <div id="player"></div>
+              <div id="state"></div>
         <div id="roomNumbers"><p>Choose a room number to start or join a game</p></div>
               <form>
                 <div class="row">
@@ -61,7 +62,7 @@
                 </div>
               </form>
 
-        <div id="state"></div>
+
       </div>
 </div>
     <!-- </div> -->
