@@ -32,13 +32,69 @@ io.on('connection', function (socket) {
 
     // console.log(playerId + ' connected');
 
-    socket.on('joined', function (roomId) {
+    socket.on('chat message', function(roomId, msg){
+      // console.log('ON', roomId, msg);
+      // console.log('global socket .on, rooms', socket.rooms);
+      // console.log(io.sockets.adapter.sids[socket.id]);
+
+      // debugger;
+      // io.emit('chat message', socket);
+
+      io.to(roomId).emit('chat message', msg);
+
+
+      // const roomKey = Object.keys(socket.rooms)[0];
+      // const room = socket.rooms[roomKey];
+      // io.to(roomId).emit('chat message', msg); // broadcast to everyone (NO!)
+    });
+
+
+    // socket.on('joined', function (roomId) {
+    socket.on('join-room', function (roomId) {
         // games[roomId] = {}
         if (games[roomId].players < 2) {
             games[roomId].players++;
             games[roomId].pid[games[roomId].players - 1] = playerId;
-        }
-        else{
+
+            socket.join(roomId, err => {
+              console.log('joining', roomId, err);
+              console.log('ROOMS: ', socket.rooms );
+
+              io.to(roomId).emit('chat message', 'joined!')
+
+              socket.on('chat message', function(msg){
+                console.log('[LOCAL join] socket .on, rooms', socket.rooms);
+                // const roomKey = Object.keys(socket.rooms)[0];
+                // const room = socket.rooms[roomKey];
+                // io.to(roomId).emit('chat message', msg); // broadcast to everyone (NO!)
+              });
+
+              socket.in(roomId).on('chat message', function(msg){
+                console.log('socket.in(room).on, rooms', socket.rooms);
+                // const roomKey = Object.keys(socket.rooms)[0];
+                // const room = socket.rooms[roomKey];
+                io.to(roomId).emit('chat message', msg); // broadcast to everyone (NO!)
+              });
+
+              io.in(roomId).on('chat message', function(msg){
+                console.log('io.in(room).on, rooms', socket.rooms);
+                // const roomKey = Object.keys(socket.rooms)[0];
+                // const room = socket.rooms[roomKey];
+                io.to(roomId).emit('chat message', msg); // broadcast to everyone (NO!)
+              });
+
+            }); // join the room in socket.io system
+
+
+
+            console.log('JOINED A ROOM', roomId);
+            console.log(socket.rooms);
+
+            // When we get a message in this room, send it only to the other
+            // player in the same room
+
+
+        }  else {
             socket.emit('full', roomId)
             return;
         }
@@ -54,7 +110,9 @@ io.on('connection', function (socket) {
         // players--;
 
 
-    });
+    }); // on 'joined'
+
+
 
     socket.on('move', function (msg) {
         socket.broadcast.emit('move', msg);
@@ -75,13 +133,13 @@ io.on('connection', function (socket) {
 
     });
 
-});
+}); // socket.on('connection')
 
-io.on('connection', function(socket){
-  socket.on('chat message', function(msg){
-    io.emit('chat message', msg);
-  });
-});
+// io.on('connection', function(socket){
+//   socket.on('chat message', function(msg){
+//     io.emit('chat message', msg); // broadcast to everyone (NO!)
+//   });
+// });
 
 server.listen(port);
 
