@@ -2,6 +2,8 @@ const express = require('express');
 const http = require('http')
 const socket = require('socket.io');
 
+
+
 const port = process.env.PORT || 3000
 
 let app = express();
@@ -60,7 +62,7 @@ io.on('connection', function (socket) {
               console.log('joining', roomId, err);
               console.log('ROOMS: ', socket.rooms );
 
-              io.to(roomId).emit('chat message', `${playerId} Joined`)
+              io.to(roomId).emit('') //`${playerId} Joined`)
 
               socket.on('chat message', function(msg){
                 console.log('[LOCAL join] socket .on, rooms', socket.rooms);

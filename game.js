@@ -13,6 +13,7 @@ let button = document.getElementById("button")
 let state = document.getElementById('state')
 // let messages = document.getElementById('chat')
 // messages.hide();
+// let timer = document.getElementById('timer')
 
 let connect = function(){
     roomId = room.value;
@@ -23,7 +24,9 @@ let connect = function(){
         // socket.emit('joined', roomId);
         socket.emit('join-room', roomId);
         $("div#chat").removeClass("hidden");
-        $("div#timer").removeClass("hidden");
+        // timer.remove()
+
+
 
     }
 }
@@ -40,6 +43,8 @@ socket.on('play', function (msg) {
     if (msg == roomId) {
         play = false;
         state.innerHTML = "Game in progress"
+        $("div#timer").removeClass("hidden");
+        start()
     }
     // console.log(msg)
 });
@@ -50,6 +55,7 @@ socket.on('move', function (msg) {
         game.move(msg.move);
         board.position(game.fen());
         console.log("moved")
+        switchTurn()
 
     }
 });
@@ -128,7 +134,9 @@ let onMouseoutSquare = function (square, piece) {
 
 let onSnapEnd = function () {
     board.position(game.fen())
+    switchTurn()
     // messages.position(game.fen());
+
 };
 
 
@@ -201,16 +209,16 @@ function getSeconds(min, sec) {
     return time;
 }
 
-let turn = "blue";
+let move = "green";
 let times, timer;
 
 function printTime() {
-    $("#" + turn + "Time").text(getTime(times[turn]));
+    $("#" + move + "Time").text(getTime(times[move]));
 }
 
 function switchTurn() {
-    if (turn == "blue") turn = "red";
-    else turn = "blue";
+    if (move == "green") move = "white";
+    else move = "green";
 }
 
 function start() {
@@ -221,18 +229,18 @@ function start() {
     let minutes = parseInt($("#minutes").val());
 
     times = {
-        red: getSeconds(minutes, seconds),
-        blue: getSeconds(minutes, seconds)
+      green: getSeconds(minutes, seconds),
+        white: getSeconds(minutes, seconds)
     }
 
-    $("#blueTime").text(getTime(getSeconds(minutes, seconds)));
-    $("#redTime").text(getTime(getSeconds(minutes, seconds)));
+    $("#greenTime").text(getTime(getSeconds(minutes, seconds)));
+    $("#whiteTime").text(getTime(getSeconds(minutes, seconds)));
 
     timer = setInterval(function() {
-        times[turn]--;
+        times[move]--;
         printTime();
 
-        if (times[turn] == 0) {
+        if (times[move] == 0) {
             navigator.vibrate(1000);
             clearInterval(timer);
             timer = false;
