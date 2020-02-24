@@ -134,7 +134,7 @@ width: 100%;
      color:white;
      font-weight:bold;
      font-size:30px;
-     align: left;
+     text-align: left;
  }
  #blueTime {
      top:50%;

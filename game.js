@@ -188,70 +188,70 @@ socket.on('player', (msg) => {
 // console.log(color)
 
 
-//
-//
-// function getTime(time) {
-//     let min = Math.floor(time / 60);
-//     let sec = time % 60;
-//     return min + ":" + (sec < 10 ? "0" + sec : sec);
-// }
-//
-// function getSeconds(min, sec) {
-//     let time = min * 60 + sec;
-//     return time;
-// }
-//
-// let turn = "blue";
-// let times, timer;
-//
-// function printTime() {
-//     $("#" + turn + "Time").text(getTime(times[turn]));
-// }
-//
-// function switchTurn() {
-//     if (turn == "blue") turn = "red";
-//     else turn = "blue";
-// }
-//
-// function start() {
-//     $("section").css("display", "none");
-//     $("main").css("display", "block");
-//
-//     let seconds = parseInt($("#seconds").val());
-//     let minutes = parseInt($("#minutes").val());
-//
-//     times = {
-//         red: getSeconds(minutes, seconds),
-//         blue: getSeconds(minutes, seconds)
-//     }
-//
-//     $("#blueTime").text(getTime(getSeconds(minutes, seconds)));
-//     $("#redTime").text(getTime(getSeconds(minutes, seconds)));
-//
-//     timer = setInterval(function() {
-//         times[turn]--;
-//         printTime();
-//
-//         if (times[turn] == 0) {
-//             navigator.vibrate(1000);
-//             clearInterval(timer);
-//             timer = false;
-//         }
-//
-//     }, 1000);
-//
-// }
-//
-// $(function() {
-//
-//     $("main").click(function() {
-//         if (timer) switchTurn();
-//         else {
-//             $("section").css("display", "block");
-//             $("main").css("display", "none");
-//         }
-//     });
-//
-//     $("#start").click(start);
-//
-// });
+
+
+function getTime(time) {
+    let min = Math.floor(time / 60);
+    let sec = time % 60;
+    return min + ":" + (sec < 10 ? "0" + sec : sec);
+}
+
+function getSeconds(min, sec) {
+    let time = min * 60 + sec;
+    return time;
+}
+
+let turn = "blue";
+let times, timer;
+
+function printTime() {
+    $("#" + turn + "Time").text(getTime(times[turn]));
+}
+
+function switchTurn() {
+    if (turn == "blue") turn = "red";
+    else turn = "blue";
+}
+
+function start() {
+    $("section").css("display", "none");
+    $("main").css("display", "block");
+
+    let seconds = parseInt($("#seconds").val());
+    let minutes = parseInt($("#minutes").val());
+
+    times = {
+        red: getSeconds(minutes, seconds),
+        blue: getSeconds(minutes, seconds)
+    }
+
+    $("#blueTime").text(getTime(getSeconds(minutes, seconds)));
+    $("#redTime").text(getTime(getSeconds(minutes, seconds)));
+
+    timer = setInterval(function() {
+        times[turn]--;
+        printTime();
+
+        if (times[turn] == 0) {
+            navigator.vibrate(1000);
+            clearInterval(timer);
+            timer = false;
+        }
+
+    }, 1000);
+
+}
+
+$(function() {
+
+    $("main").click(function() {
+        if (timer) switchTurn();
+        else {
+            $("section").css("display", "block");
+            $("main").css("display", "none");
+        }
+    });
+
+    $("#start").click(start);
+
+});

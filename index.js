@@ -60,7 +60,7 @@ io.on('connection', function (socket) {
               console.log('joining', roomId, err);
               console.log('ROOMS: ', socket.rooms );
 
-              io.to(roomId).emit('chat message', 'joined!')
+              io.to(roomId).emit('chat message', `${playerId} Joined`)
 
               socket.on('chat message', function(msg){
                 console.log('[LOCAL join] socket .on, rooms', socket.rooms);

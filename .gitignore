@@ -10,7 +10,11 @@ tmp/*
 !/log/.keep
 !/tmp/.keep
 
-**/node_modules
+/node_modules
+npm-debug.log
+.DS_Store
+/*.env
+
 **/yarn-error.log
 
 .byebug_history
