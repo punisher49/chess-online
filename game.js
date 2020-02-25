@@ -40,9 +40,12 @@ socket.on('full', function (msg) {
 });
 
 socket.on('play', function (msg) {
+  // THIS CODE ONLY RUNS FOR PLAYER 1
+    console.log('ws: play');
     if (msg == roomId) {
         play = false;
         state.innerHTML = "Game in progress"
+        console.log('timer', $("div#timer"));
         $("div#timer").removeClass("hidden");
         start()
     }
@@ -173,9 +176,12 @@ socket.on('player', (msg) => {
     players = msg.players;
 
     if(players == 2){
+      // THIS CODE ONLY RUNS FOR THE SECOND PLAYER THAT JOINS
         play = false;
         socket.emit('play', msg.roomId);
-        state.innerHTML = "Game in Progress"
+        state.innerHTML = "Game in Progress";
+        $("div#timer").removeClass("hidden");
+        start()
     }
     else
         state.innerHTML = "Waiting for Second player";
@@ -225,8 +231,8 @@ function start() {
     $("section").css("display", "none");
     $("main").css("display", "block");
 
-    let seconds = parseInt($("#seconds").val());
-    let minutes = parseInt($("#minutes").val());
+    let seconds = 0; //parseInt($("#seconds").val());
+    let minutes = 15; //parseInt($("#minutes").val());
 
     times = {
       green: getSeconds(minutes, seconds),
