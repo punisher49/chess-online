@@ -30,7 +30,7 @@ let connect = function(){
     }
 }
 socket.on('chat message', function(msg){
-  $('#messages').append($('<li>').text(msg));
+  $('#messages').append($('<li>').text(players + msg));
 });
 
 socket.on('full', function (msg) {

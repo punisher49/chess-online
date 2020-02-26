@@ -25,34 +25,33 @@ list-style-type: none;
 position:absolute;
 left:0;
 top: 0;
-/* border: 2px solid yellow; */
 width: 20%;
 text-align: center;
 margin: 3px;
-/* flex: 1; overflow: auto; */
 font-size: 15px;
 display: block;
 margin-top: 5%
 
+
 }
 #messages li {
 padding: 5px 10px;
-margin-top: 20px
+margin-top: 20px;
+
 
 }
 
 #messages li:nth-child(odd) {
 background: #EBECD0;
 border-radius: 10px;
-margin-left: 120px;
-width: 50%;
+width: 100%;
 word-wrap: break-word;
 color:black
 }
 #messages li:nth-child(even) {
 background: #789556;
 border-radius: 10px;
-width: 50%;
+width: 100%;
 word-wrap: break-word;
 
 }
@@ -179,6 +178,7 @@ width: 100%;
    position: fixed;
    color: #EBECD0;
    font-size:17px;
+   position: absolute;
 
  }
  #player{
@@ -188,6 +188,7 @@ width: 100%;
    margin-top:18px;
    color: #EBECD0;
    font-size:17px;
+   position: absolute;
  }
  #roomNumbers{
    top: 0;
@@ -196,6 +197,7 @@ width: 100%;
     margin-top:35px;
     color: #EBECD0;
     font-size:17px;
+    position: absolute;
  }
  #room, #button{
    margin-top: 3%
@@ -208,12 +210,4 @@ width: 100%;
  }
  .red{
    color:#789556;
-   animation: blinker 2s linear infinite;
  }
-
-
-@keyframes blinker {
-  10% {
-    opacity: 0;
-  }
-}
