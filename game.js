@@ -23,8 +23,7 @@ let connect = function(){
         button.remove();
         // socket.emit('joined', roomId);
         socket.emit('join-room', roomId);
-        // $("div#chat").removeClass("hidden");
-        // timer.remove()
+        $("div#chat").removeClass("hidden");
 
 
 
