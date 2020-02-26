@@ -271,13 +271,12 @@ function start() {
             clearInterval(timer);
             timer = false;
               state.innerHTML = '<div class="red">GAME OVER!!! Black Won</div>';
-
         }
 
 
     }, 1000);
 
-  // start2();
+  // start();
 
     return true
 

@@ -208,12 +208,12 @@ width: 100%;
  }
  .red{
    color:#789556;
-   animation: blinker 2.5s linear infinite;
+   animation: blinker 2s linear infinite;
  }
 
 
 @keyframes blinker {
-  50% {
+  10% {
     opacity: 0;
   }
 }
