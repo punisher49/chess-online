@@ -23,7 +23,7 @@ let connect = function(){
         button.remove();
         // socket.emit('joined', roomId);
         socket.emit('join-room', roomId);
-        $("div#chat").removeClass("hidden");
+        // $("div#chat").removeClass("hidden");
         // timer.remove()
 
 
@@ -39,16 +39,26 @@ socket.on('full', function (msg) {
         window.location.assign(window.location.href+ 'full.html');
 });
 
+socket.on('timer-set', function(timer){
+  console.log('Got event: timer-set', timer);
+  if(players === 2){
+    // Only player 2 should respond to this event
+    startPlayer2(timer);
+  }
+});
+
 socket.on('play', function (msg) {
-  // THIS CODE ONLY RUNS FOR PLAYER 1
+  // THIS CODE ONLY RUNS FOR player1
     console.log('ws: play');
     if (msg == roomId) {
         play = false;
         state.innerHTML = "Game in progress"
         console.log('timer', $("div#timer"));
-        $("div#timer").removeClass("hidden");
-        start()
-    }
+        $("#timer").removeClass("hidden");
+        $("#section").removeClass("hidenSection")
+        // start()
+
+    }//if
     // console.log(msg)
 });
 
@@ -62,6 +72,7 @@ socket.on('move', function (msg) {
 
     }
 });
+
 
 let removeGreySquares = function () {
     $('#board .square-55d63').css('background', '');
@@ -175,13 +186,14 @@ socket.on('player', (msg) => {
     plno.innerHTML = 'Player ' + msg.players + " : " + color;
     players = msg.players;
 
-    if(players == 2){
-      // THIS CODE ONLY RUNS FOR THE SECOND PLAYER THAT JOINS
+    if(players === 2){
+      // THIS CODE ONLY RUNS FOR THE SECOND PLAYER THAT JOINS player2
         play = false;
         socket.emit('play', msg.roomId);
         state.innerHTML = "Game in Progress";
-        $("div#timer").removeClass("hidden");
-        start()
+        $("#timer").removeClass("hidden")
+
+
     }
     else
         state.innerHTML = "Waiting for Second player";
@@ -198,6 +210,7 @@ socket.on('player', (msg) => {
         onSnapEnd: onSnapEnd
     };
     board = ChessBoard('board', cfg);
+    // $("#timer").removeClass("hidden");
 });
 // console.log(color)
 
@@ -228,11 +241,18 @@ function switchTurn() {
 }
 
 function start() {
+  // Only the first user triggers this function
+  console.log('start()');
     $("section").css("display", "none");
     $("main").css("display", "block");
 
-    let seconds = 0; //parseInt($("#seconds").val());
-    let minutes = 15; //parseInt($("#minutes").val());
+    let seconds = parseInt($("#seconds").val());
+    let minutes = parseInt($("#minutes").val());
+
+
+    // Tell the second user what the timer value is
+    // TODO: don't send roomId, use socket.io rooms to scope these messages
+    socket.emit('timer-set', roomId, { minutes, seconds });
 
     times = {
       green: getSeconds(minutes, seconds),
@@ -241,6 +261,7 @@ function start() {
 
     $("#greenTime").text(getTime(getSeconds(minutes, seconds)));
     $("#whiteTime").text(getTime(getSeconds(minutes, seconds)));
+
 
     timer = setInterval(function() {
         times[move]--;
@@ -254,7 +275,42 @@ function start() {
 
     }, 1000);
 
+  // start2();
+
+    return true
+
 }
+
+
+function startPlayer2({ minutes, seconds }) {
+    console.log('start2()');
+
+    $("section").css("display", "none");
+    $("main").css("display", "block");
+
+    times = {
+      green: getSeconds(minutes, seconds),
+        white: getSeconds(minutes, seconds)
+    }
+
+    $("#greenTime").text(getTime(getSeconds(minutes, seconds)));
+    $("#whiteTime").text(getTime(getSeconds(minutes, seconds)));
+
+
+    timer = setInterval(function() {
+        times[move]--;
+        printTime();
+
+        if (times[move] == 0) {
+            navigator.vibrate(1000);
+            clearInterval(timer);
+            timer = false;
+        }
+
+    }, 1000);
+
+} // startPlayer2()
+
 
 $(function() {
 

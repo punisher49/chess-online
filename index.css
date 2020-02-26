@@ -68,22 +68,19 @@ margin-left: 30%
 div.hidden{
   display: none
 }
-/* #chat{
-  margin-right: 30%
-} */
+section.hidenSection{
+  display: none
+}
+
 #content{
 position: absolute;
-/* top: 10px; */
 left: 0;
 right: 0;
 font-family: Helvetica;
 letter-spacing: 1px;
 font-size: 11pt;
 color: #ffffff;
-/* padding: 20px; */
-/* background-color: rgba(200, 200, 200, 0.2); */
 width: 100%;
-/* margin: 0 auto; */
 }
 #m{
   border: 0;
@@ -93,8 +90,6 @@ width: 100%;
   height: 50px;
   outline:none;
   border-radius: 15px;
-  /* margin-top: 90%; */
-  /* margin-left: 50% */
   margin: 30px
  }
 
@@ -104,26 +99,19 @@ width: 100%;
 
  main {
      display: none;
-     /* margin: 40px */
  }
  #green, #white {
      text-align:center;
      position:absolute;
      right:0;
-     /* padding:10% 0; */
  }
  #green {
-     /* bottom:20%;  */
      top:0;
      background-color:#789556;
-     /* height: 30% */
-     /* margin-top: 20px; */
  }
  #white {
      top:85%;
-     /* bottom:0; */
      background-color:#EBECD0;
-     /* color: black */
  }
  .black{
    color:black
@@ -137,11 +125,6 @@ width: 100%;
  }
  #greenTime {
      top:50%;
-     /* -webkit-transform:rotate(-180deg);
-     -moz-transform:rotate(-180deg);
-     -o-transform:rotate(-180deg); */
-     /* align: left; */
-
  }
  #whiteTime{
    color:black

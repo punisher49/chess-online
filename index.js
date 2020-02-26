@@ -51,6 +51,13 @@ io.on('connection', function (socket) {
     });
 
 
+    // Forward timer-set messages to whole room
+    // TODO: user socket.io rooms instead of roomId
+    socket.on('timer-set', function(roomId, timer){
+      io.to(roomId).emit('timer-set', timer);
+    });
+
+
     // socket.on('joined', function (roomId) {
     socket.on('join-room', function (roomId) {
         // games[roomId] = {}
@@ -125,6 +132,10 @@ io.on('connection', function (socket) {
         socket.broadcast.emit('play', msg);
         console.log("ready " + msg);
     });
+    // socket.on('timer', function(msg){
+    //   socket.broadcast.emit('timer',msg)
+    //   console.log(msg);
+    // })
 
     socket.on('disconnect', function () {
         for (let i = 0; i < 1000000; i++) {
