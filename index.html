@@ -34,7 +34,7 @@
     var socket = io();
   </script> -->
 <div id="content">
-  <h1>Chess Online</h1>
+  <h1>CHESS ONLINE</h1>
     <div class="container">
       <div id="board" style="width: 500px; margin: auto"></div>
     </div>
@@ -50,11 +50,11 @@
     <div id="information">
     <div id="state"></div>
       <div id="player"></div>
-        <div id="roomNumbers"><p></p></div>
+        <div id="roomNumbers"></div>
               <form>
                 <div class="row">
                     <div class="col">
-                      <input type="number" id="room" min="0" max="99"
+                      <input type="number" id="room" min="0" max="1000000"
                       class="form-control form-control-md number" placeholder="Choose a room number to start or join a game">
                     </div>
                     <div class="col">
@@ -68,9 +68,9 @@
   <div id="timer" class="hidden">
       <section id="section" class="hidenSection">
         <h3>Set Timer</h3>
-          Minutes: <input type="tel" id="minutes" value="15">
+          Minutes: <input type="tel" id="minutes" value="0">
           <br>
-          Seconds: <input type="tel" id="seconds" value="0">
+          Seconds: <input type="tel" id="seconds" value="4">
           <br>
           <button id="start">Start</button>
           <br>

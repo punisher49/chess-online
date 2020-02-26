@@ -51,7 +51,7 @@ socket.on('play', function (msg) {
     console.log('ws: play');
     if (msg == roomId) {
         play = false;
-        state.innerHTML = "Game in progress"
+        state.innerHTML = "Game in Progress"
         console.log('timer', $("div#timer"));
         $("#timer").removeClass("hidden");
         $("#section").removeClass("hidenSection")
@@ -111,7 +111,7 @@ let onDrop = function (source, target) {
         promotion: 'q' // NOTE: always promote to a queen for example simplicity
     });
     if (game.game_over()) {
-        state.innerHTML = 'GAME OVER';
+        state.innerHTML = '<div class="red">GAME OVER</div>';
         socket.emit('gameOver', roomId)
     }
 
@@ -270,7 +270,10 @@ function start() {
             navigator.vibrate(1000);
             clearInterval(timer);
             timer = false;
+              state.innerHTML = '<div class="red">GAME OVER!!! Black Won</div>';
+
         }
+
 
     }, 1000);
 
@@ -304,7 +307,10 @@ function startPlayer2({ minutes, seconds }) {
             navigator.vibrate(1000);
             clearInterval(timer);
             timer = false;
+          state.innerHTML = '<div class="red">GAME OVER!!! White Won</div>';
+
         }
+
 
     }, 1000);
 

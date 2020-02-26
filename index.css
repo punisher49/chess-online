@@ -109,11 +109,13 @@ width: 100%;
  #green {
      top:0;
      background-color:#789556;
+     border-radius: 20px;
  }
  #white {
      top:0;
-     margin-right: 117px;
+     margin-right: 104px;
      background-color:#EBECD0;
+     border-radius: 20px;
  }
  .black{
    color:black
@@ -121,7 +123,7 @@ width: 100%;
  #greenTime, #whiteTime {
      color:white;
      font-weight:bold;
-     font-size: 30px;
+     font-size: 25px;
      margin: 20px
 
  }
@@ -171,3 +173,47 @@ width: 100%;
    background-color: #789556;
    border: 1px solid #789556
  }
+ #state{
+   top: 0;
+   left:0;
+   position: fixed;
+   color: #EBECD0;
+   font-size:17px;
+
+ }
+ #player{
+   top: 0;
+   left:0;
+   position: fixed;
+   margin-top:18px;
+   color: #EBECD0;
+   font-size:17px;
+ }
+ #roomNumbers{
+   top: 0;
+   left:0;
+   position: fixed;
+    margin-top:35px;
+    color: #EBECD0;
+    font-size:17px;
+ }
+ #room, #button{
+   margin-top: 3%
+ }
+ h1{
+   margin-top: 1%
+ }
+ #button{
+   background-color: #789556;
+ }
+ .red{
+   color:#789556;
+   animation: blinker 2.5s linear infinite;
+ }
+
+
+@keyframes blinker {
+  50% {
+    opacity: 0;
+  }
+}
