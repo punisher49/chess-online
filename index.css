@@ -56,8 +56,9 @@ width: 50%;
 word-wrap: break-word;
 
 }
-h1{
+h1, h4{
 text-align: center;
+color: #EBECD0;
 }
 form{
 margin-left: 30%
@@ -76,7 +77,6 @@ section.hidenSection{
 position: absolute;
 left: 0;
 right: 0;
-font-family: Helvetica;
 letter-spacing: 1px;
 font-size: 11pt;
 color: #ffffff;
