@@ -13,7 +13,7 @@ let players;
 let joined = true;
 
 app.use(express.static(__dirname + "/"));
-
+// create an array of 100 games and initialize them
 let games = Array(1000000);
 for (let i = 0; i < 1000000; i++) {
     games[i] = {players: 0 , pid: [0 , 0]};
@@ -29,6 +29,9 @@ app.get('/', (req, res) => {
 io.on('connection', function (socket) {
     // console.log(players);
     let color;
+    // just assign a random number to every player that has connected
+    // the numbers have no significance so it
+    // doesn't matter if 2 people get the same number
     let playerId =  Math.floor((Math.random() * 100) + 1)
 
 

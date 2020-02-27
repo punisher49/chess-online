@@ -30,7 +30,7 @@ let connect = function(){
     }
 }
 socket.on('chat message', function(msg){
-  $('#messages').append($('<li>').text(players + msg));
+  $('#messages').append($('<li>').text(msg));
 });
 
 socket.on('full', function (msg) {
@@ -111,7 +111,7 @@ let onDrop = function (source, target) {
         promotion: 'q' // NOTE: always promote to a queen for example simplicity
     });
     if (game.game_over()) {
-        state.innerHTML = '<div class="red">GAME OVER</div>';
+        state.innerHTML = '<div class="red">GAME OVER!!!</div>';
         socket.emit('gameOver', roomId)
     }
 
@@ -270,13 +270,15 @@ function start() {
             navigator.vibrate(1000);
             clearInterval(timer);
             timer = false;
-              state.innerHTML = '<div class="red">GAME OVER!!! Black Won</div>';
+              state.innerHTML = '<div class="red">GAME OVER!!!</div>';
+              play = true
+
         }
 
 
     }, 1000);
 
-  // start();
+  // start2();
 
     return true
 
@@ -306,7 +308,8 @@ function startPlayer2({ minutes, seconds }) {
             navigator.vibrate(1000);
             clearInterval(timer);
             timer = false;
-          state.innerHTML = '<div class="red">GAME OVER!!! White Won</div>';
+          state.innerHTML = '<div class="red">GAME OVER!!!</div>';
+          play = true
 
         }
 
