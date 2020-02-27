@@ -43,8 +43,23 @@ socket.on('timer-set', function(timer){
   if(players === 2){
     // Only player 2 should respond to this event
     startPlayer2(timer);
+
   }
 });
+//
+// socket.on('timer-stop', function(timer){
+//   console.log('Got event: timer-stop', timer);
+//   if(players ===2 && game.game_over() === true){
+//     // Only player 2 should respond to this event
+//     stopTimer(timer)
+//
+//   }
+// });
+
+
+
+
+
 
 socket.on('play', function (msg) {
   // THIS CODE ONLY RUNS FOR player1
@@ -112,7 +127,8 @@ let onDrop = function (source, target) {
     });
     if (game.game_over()) {
         state.innerHTML = '<div class="red">GAME OVER!!!</div>';
-        socket.emit('gameOver', roomId)
+        stopTimer()
+        socket.emit('gameOver', roomId, players)
     }
 
     // illegal move
@@ -311,6 +327,9 @@ function startPlayer2({ minutes, seconds }) {
           state.innerHTML = '<div class="red">GAME OVER!!!</div>';
           play = true
 
+        }else if(game.game_over() === true){
+          state.innerHTML = '<div class="red">GAME OVER!!!</div>';
+          stopTimer()
         }
 
 
@@ -332,3 +351,6 @@ $(function() {
     $("#start").click(start);
 
 });
+function stopTimer() {
+  clearInterval(timer);
+}

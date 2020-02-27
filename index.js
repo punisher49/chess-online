@@ -59,6 +59,10 @@ io.on('connection', function (socket) {
     socket.on('timer-set', function(roomId, timer){
       io.to(roomId).emit('timer-set', timer);
     });
+    // socket.on('timer-stop', function(roomId, timer){
+    //   io.to(roomId).emit('timer-stop', timer);
+    // });
+
 
 
     // socket.on('joined', function (roomId) {
