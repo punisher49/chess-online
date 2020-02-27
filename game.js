@@ -65,11 +65,11 @@ socket.on('play', function (msg) {
   // THIS CODE ONLY RUNS FOR player1
     console.log('ws: play');
     if (msg == roomId) {
-        play = false;
         state.innerHTML = "Game in Progress"
         console.log('timer', $("div#timer"));
         $("#timer").removeClass("hidden");
         $("#section").removeClass("hidenSection")
+        // play = false;
         // start()
 
     }//if
@@ -203,10 +203,11 @@ socket.on('player', (msg) => {
 
     if(players === 2){
       // THIS CODE ONLY RUNS FOR THE SECOND PLAYER THAT JOINS player2
-        play = false;
         socket.emit('play', msg.roomId);
         state.innerHTML = "Game in Progress";
         $("#timer").removeClass("hidden")
+        // play = false;
+
 
 
     }
@@ -296,7 +297,7 @@ function start() {
 
   // start2();
 
-    return true
+      play = false;
 
 }
 
@@ -335,6 +336,8 @@ function startPlayer2({ minutes, seconds }) {
 
     }, 1000);
 
+    
+  play = false;
 } // startPlayer2()
 
 

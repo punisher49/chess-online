@@ -25,10 +25,10 @@ function draw() {
 // snowflake class
 function snowflake() {
   // initialize coordinates
-  this.posX = 0;
-  this.posY = 0;
+  this.posX = random();
+  this.posY = random();
   this.initialangle = random(0, 2 * PI);
-  this.size = random(1, 2);
+  this.size = random(1,2);
 
   // radius of snowflake spiral
   // chosen so the snowflakes are uniformly spread out in area
